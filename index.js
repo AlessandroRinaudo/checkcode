@@ -1,9 +1,9 @@
 const fs= require("fs");
-const scoring= require("./scoring/scoring"); 
+// const scoring= require("./scoring/scoring"); 
 
 let code= fs.readFileSync("test.js", "utf8");
-let score= scoring.from(code);
+// let score= scoring.from(code);
 console.log("--------", "Result","--------");
-console.log(score);
+// console.log(score);
 
 
