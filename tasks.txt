@@ -7,3 +7,14 @@ operations      []
 if else         []
 return          []    
 console.log     [] 
+=>              []
+commentaires    [x]
+function        [x]
+tableau         [x]   
+objets          []
+
+
+ 
+ 
+
+   
