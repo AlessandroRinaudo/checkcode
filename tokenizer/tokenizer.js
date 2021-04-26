@@ -66,6 +66,12 @@ module.exports = function(code) {
             else if (t == '=') {
               tokens.push({ type: constTokens.typeEqual, value: t })
             }
+            else if (t == 'if') {
+              tokens.push({ type: constTokens.typeIf, value: t })
+            }
+            else if (t == 'else') {
+              tokens.push({ type: constTokens.typeElse, value: t })
+            }
             else
               tokens.push({type: constTokens.typeWord, value: t})
         }
