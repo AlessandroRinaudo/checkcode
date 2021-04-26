@@ -1,14 +1,9 @@
 To do 26/04/2021
 
 crochets        []
-function        []
-commentaires    []
-tableau         []
 incrementations []
-operations      []
-&& ||  == !=    []
+operations      [] 
+&& ||  == !=    [] 
 if else         []
 return          []    
-=>              []
-console.log     []
-objets          []
+console.log     [] 
