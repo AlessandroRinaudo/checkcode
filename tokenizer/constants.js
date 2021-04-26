@@ -3,6 +3,7 @@ exports.specialChars = {
     different: { regRule: /(\!\=)/g, value: '!=' },
     newLine:        {regRule: /\r\n/g, value:'\n'},
     endInstruct:    {regRule: /;/g,  value:';'},
+    arrow:    {regRule: /=>/g,  value:'=>'},
     equal:          {regRule: /=/g, value:'='},
     const:          {regRule: /@const/g, value:'const'},
     var:          {regRule: /@var/g, value:'var'},
@@ -22,16 +23,17 @@ exports.specialChars = {
     decrementations: { regRule: /\-\-/g, value: "--" },
     addition: {regRule: /(\+)/g, value:'+'},
     soustraction: { regRule: /(\-)/g, value: '-' },
+    comment:  {regRule: /\/\//g, value:"comment"},
     division: { regRule: /(\/)/g, value: '/' },
     and: { regRule: /(\&\&)/g, value: '&&' },
     or: { regRule: /(\|\|)/g, value: '||' },
-    function:  {regRule: /function/g, value:"function"},
-    comment:  {regRule: /\/\//g, value:"comment"},
+    function:  {regRule: /function/g, value:"function"}
 
 };
 
 exports.symbolePoint            = "point";
 exports.symboleVirgule          = "virgule";
+exports.symboleArrow            = "arrow";
 exports.symboleQuotationMark    = "quotationMark";
 exports.symboleOpenParenthese   = "openParenthese";
 exports.symboleCloseParenthese  = "closeParenthese";
@@ -51,6 +53,7 @@ exports.symboleComment         = "comment";
 
 
 exports.typeNumber      = "number";
+exports.typeArrow      = "arrow";
 exports.typeWord        = "word";
 exports.typeConst       = "constant";
 exports.typeVar         = "variable";

@@ -18,6 +18,9 @@ module.exports = function(code) {
         //sinon c'est un mot
         }
         else{
+            if(t=='=>'){
+              tokens.push({type: constTokens.typeArrow})
+            }
             if(t=='const'){
               tokens.push({type: constTokens.typeConst})
             }
