@@ -29,11 +29,44 @@ module.exports = function(code) {
             else if(t=='{'){
               tokens.push({type: constTokens.typeOpenBrace})
             }
-            else if(t=='{'){
-              tokens.push({type: constTokens.typeOpenBrace})
+            else if(t=='}'){
+              tokens.push({ type: constTokens.typeOpenBrace})
             }
             else if(t==':'){
               tokens.push({type: constTokens.typeColon})
+            }
+            else if (t == '++') {
+              tokens.push({ type: constTokens.typeIncrementation, value: t })
+            }
+            else if (t == '--') {
+              tokens.push({ type: constTokens.typeDecrementation, value: t })
+            }
+            else if (t == '+') {
+              tokens.push({ type: constTokens.typeAddition, value: t })
+            }
+            else if (t == '-') {
+              tokens.push({ type: constTokens.typeSoustraction, value: t })
+            }
+            else if (t == '*') {
+              tokens.push({ type: constTokens.typeMultiplication, value: t })
+            }
+            else if (t == '\\') {
+              tokens.push({ type: constTokens.typeDivision, value: t })
+            }
+            else if (t == '==') {
+              tokens.push({ type: constTokens.typeBooleanEqual, value: t })
+            }
+            else if (t == '||') {
+              tokens.push({ type: constTokens.typeOr, value: t })
+            }
+            else if (t == '!=') {
+              tokens.push({ type: constTokens.typeDifferent, value: t })
+            }
+            else if (t == '&&') {
+              tokens.push({ type: constTokens.typeAnd, value: t })
+            }
+            else if (t == '=') {
+              tokens.push({ type: constTokens.typeEqual, value: t })
             }
             else
               tokens.push({type: constTokens.typeWord, value: t})
