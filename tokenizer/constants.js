@@ -29,7 +29,8 @@ exports.specialChars = {
     or: { regRule: /(\|\|)/g, value: '||' },
     function:  {regRule: /function/g, value:"function"},
     if:  {regRule: /if/g, value:"if"},
-    else:  {regRule: /else/g, value:"else"}
+    else:  {regRule: /else/g, value:"else"},
+    return:  {regRule: /return/g, value:"return"}
 
 
 };
@@ -55,6 +56,7 @@ exports.symboleFunction            = "function";
 exports.symboleComment             = "comment";
 exports.symboleIf                  = "if";
 exports.symboleElse                = "else";
+exports.symboleReturn              = "return";
 
 
 exports.typeNumber              = "number";
@@ -87,6 +89,8 @@ exports.typeFonction            = "function";
 exports.typeComment             = "comment";
 exports.typeIf                  = "if";
 exports.typeElse                = "else";
+
+exports.typeReturn                = "return";
 
 
 exports.errorNoTokenFound = 'No Tokens Found.';
