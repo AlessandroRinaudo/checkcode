@@ -1,9 +1,9 @@
 To do 26/04/2021
 
 =>              []
-commentaires    []
-function        []
-tableau         []   
+commentaires    [x]
+function        [x]
+tableau         [x]   
 objets          []
 
 

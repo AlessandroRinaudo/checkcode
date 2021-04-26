@@ -1,2 +1,1 @@
-const a = {mot:'salut'}
-
+const tableau = ['pomme']

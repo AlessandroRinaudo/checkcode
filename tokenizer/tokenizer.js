@@ -12,8 +12,9 @@ module.exports = function(code) {
       if(t.length <= 0 || isNaN(t)) {
         //on check si c'est un caractère spéciale
         let typeChars= helper.checkChars(t);
+        
         if (typeChars){
-            tokens.push({type: typeChars})
+          tokens.push({type: typeChars})
         //sinon c'est un mot
         }
         else{
@@ -26,14 +27,8 @@ module.exports = function(code) {
             else if(t=='let'){
               tokens.push({type: constTokens.typeLet})
             }
-            else if(t=='{'){
-              tokens.push({type: constTokens.typeOpenBrace})
-            }
-            else if(t=='{'){
-              tokens.push({type: constTokens.typeOpenBrace})
-            }
-            else if(t==':'){
-              tokens.push({type: constTokens.typeColon})
+            else if(t=='function'){
+              tokens.push({type: constTokens.typeFunction})
             }
             else
               tokens.push({type: constTokens.typeWord, value: t})
