@@ -26,6 +26,15 @@ module.exports = function(code) {
             else if(t=='let'){
               tokens.push({type: constTokens.typeLet})
             }
+            else if(t=='{'){
+              tokens.push({type: constTokens.typeOpenBrace})
+            }
+            else if(t=='{'){
+              tokens.push({type: constTokens.typeOpenBrace})
+            }
+            else if(t==':'){
+              tokens.push({type: constTokens.typeColon})
+            }
             else
               tokens.push({type: constTokens.typeWord, value: t})
         }

@@ -1,3 +1,2 @@
-const salut = "d"
-let a = 2
-var b = 1;
+const a = {mot:'salut'}
+
