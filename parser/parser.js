@@ -11,7 +11,7 @@ module.exports=(tokens) =>{
             expression= factory.create(constParser.expressionDeclaration, tokens, i);
             i++;
         //utilisation symbole égale
-        }else if(tokens[i].type == constTokens.symboleEqual){
+        }else if(tokens[i].type == constTokens.typeEqual){
             expression= factory.create(constParser.expressionAffectation, tokens, i);
             //si affectation nombre
             if(expression.variableValue.type== constTokens.typeNumber){
@@ -26,10 +26,10 @@ module.exports=(tokens) =>{
             i= expression.end;
         }
         if(expression){
-            console.log("je suis dans le if");
+            // console.log("je suis dans le if");
             AST.push(expression);
         }else{
-            console.log('je suis dans le else');
+            // console.log('je suis dans le else');
             AST.push(tokens[i]);
         }
     }
