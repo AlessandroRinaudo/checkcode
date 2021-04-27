@@ -6,7 +6,7 @@ exports.expressionDeclaration= "variableDeclaration";
 exports.expressionAffectation= "variableAffectation";
 exports.expressionMethodCall= "objectMethodCall";
 
-exports.declarationVariable = ["var","let", "const"];
+exports.declarationVariable = ["var","let", "const"]; // ici on crée la valeur qui reconnait les types des variables
 
 exports.errorMissingOpenParenthesis = "Error: missing a open parenthesis";
 exports.errorMissingCloseParenthesis= "Error: missing a close parenthesis";

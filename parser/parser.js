@@ -7,7 +7,7 @@ module.exports=(tokens) =>{
     for(let i= 0; i<tokens.length; i++){
         let expression= null;
         //déclaration de variable
-        if(tokens[i].type == constTokens.typeWord && constParser.declarationVariable.indexOf(tokens[i].value)!=-1){
+        if(tokens[i].type == constTokens.typeConst|| tokens[i].type == constTokens.typeVar || tokens[i].type == constTokens.typeLet){
             expression= factory.create(constParser.expressionDeclaration, tokens, i);
             i++;
         //utilisation symbole égale
@@ -26,8 +26,10 @@ module.exports=(tokens) =>{
             i= expression.end;
         }
         if(expression){
+            console.log("je suis dans le if");
             AST.push(expression);
         }else{
+            console.log('je suis dans le else');
             AST.push(tokens[i]);
         }
     }

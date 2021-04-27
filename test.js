@@ -1,2 +1,1 @@
-let tiny ="cc";
-const hey ="lol"
+const x = 3
