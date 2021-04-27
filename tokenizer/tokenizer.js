@@ -4,7 +4,7 @@ const constTokens= require("./constants");
 
 module.exports = function(code) {
     code= helper.replaceSpecialsChars(code);
-    var _tokens = code.split(/[\n\t\f\v ]+/);
+    var _tokens = code.split(/[\t\f\v ]+/);
     var tokens = []
     for (var i = 0; i < _tokens.length; i++) {
       var t = _tokens[i]

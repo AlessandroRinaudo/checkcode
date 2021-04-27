@@ -1,7 +1,7 @@
 exports.specialChars = {
     booleanEqual: { regRule: /(\=\=)/g, value: '==' },
     different: { regRule: /(\!\=)/g, value: '!=' },
-    newLine:        {regRule: /\r\n/g, value:'\n'},
+    newLine: { regRule: /(\r\n)|(\n)/g, value:'\n'},
     endInstruct:    {regRule: /;/g,  value:';'},
     arrow:    {regRule: /=>/g,  value:'=>'},
     equal:          {regRule: /=/g, value:'='},
