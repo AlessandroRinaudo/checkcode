@@ -75,7 +75,10 @@ module.exports = function(code) {
             else if (t == 'return') {
               tokens.push({ type: constTokens.typeReturn, value: t })
             }
-            else if (t == 'true'||'false') {
+            else if (t == 'true') {
+              tokens.push({ type: constTokens.typeBool, value: t })
+            }
+            else if (t == 'false') {
               tokens.push({ type: constTokens.typeBool, value: t })
             }
             else

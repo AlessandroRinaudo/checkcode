@@ -1,6 +1,7 @@
-if(true) 
-  salut
-else if (false)
-  df
-else
-  lol
+const addFruit = () => {
+  const fruit1 ="pomme"
+  if(fruit1 == "pomme")
+    return "Vous avez choisi une pomme"
+  else 
+    return false
+}

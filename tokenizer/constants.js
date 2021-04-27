@@ -61,7 +61,7 @@ exports.symboleIf                  = "if";
 exports.symboleElse                = "else";
 exports.symboleReturn              = "return";
 exports.symboleBool                = "boolean";
-exports.symboleBool                = "boolean";
+
 
 
 exports.typeNumber              = "number";
@@ -94,10 +94,9 @@ exports.typeFonction            = "function";
 exports.typeComment             = "comment";
 exports.typeIf                  = "if";
 exports.typeElse                = "else";
-
 exports.typeReturn              = "return";
 exports.typeBool                = "boolean";
-exports.typeBool                = "boolean";
+
 
 
 exports.errorNoTokenFound = 'No Tokens Found.';
