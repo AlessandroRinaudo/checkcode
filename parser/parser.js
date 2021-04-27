@@ -26,15 +26,18 @@ module.exports=(tokens) =>{
          else if (tokens[i].type == constTokens.typeFonction) {
             expression= factory.create(constParser.functionDeclaration, tokens, i);
         }
+         else if (tokens[i].type == constTokens.typeIf ) {
+            expression= factory.create(constParser.conditionIf, tokens, i);
+        }
         else if(i<tokens.length-1 && tokens[i].type == constTokens.typeWord &&  tokens[i+1].type==constTokens.symbolePoint){
             expression = factory.create(constParser.expressionMethodCall, tokens, i);
             i= expression.end;
         }
         if(expression){
-            // console.log("je suis dans le if");
+            console.log("je suis dans le if");
             AST.push(expression);
         }else{
-            // console.log('je suis dans le else');
+            console.log('je suis dans le else');
             AST.push(tokens[i]);
         }
     }

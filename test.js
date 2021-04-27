@@ -1,1 +1,1 @@
-fonction x () {}
+if x

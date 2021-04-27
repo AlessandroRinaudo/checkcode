@@ -10,6 +10,8 @@ exports.create= (type, tokens, start)=>{
                 return variableDeclaration(tokens, start);
         case constParser.functionDeclaration:
                 return functionDeclaration(tokens, start);
+        case constParser.conditionIf:
+                return conditionIf(tokens, start);
         case constParser.expressionAffectation:
             return variableAffectation(tokens, start);
     }
@@ -48,4 +50,11 @@ function variableAffectation(tokens, start){
         variableValue= helper.searchString(tokens, start+1);
     }
     return {type: constParser.expressionAffectation, variableName: variableName, variableValue: variableValue};
+}
+
+function conditionIf(tokens, start){
+    if(tokens[start-1].type != constTokens.typeWord) throw constParser.errorMissingWord;
+    let conditionName= tokens[start-1].value;
+    return {type: constParser.conditionIf, conditionName: conditionName};
+    
 }

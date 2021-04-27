@@ -4,8 +4,10 @@ exports.typeString= 'string';
 
 exports.expressionDeclaration= "variableDeclaration";
 exports.functionDeclaration= "functionDeclaration";
+exports.ifStatement= "ifStatement";
 exports.expressionAffectation= "variableAffectation";
 exports.expressionMethodCall= "objectMethodCall";
+exports.conditionIf  = "conditionIf";
 
 exports.declarationVariable = ["var","let", "const"]; // ici on crée la valeur qui reconnait les types des variables
 
