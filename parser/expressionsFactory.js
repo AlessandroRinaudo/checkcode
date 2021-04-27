@@ -40,7 +40,11 @@ function variableAffectation(tokens, start){
     let variableValue= null;
     if(tokens[start+1].type==constTokens.typeNumber){
         variableValue= tokens[start+1];
-    }else if(tokens[start+1].type==constTokens.symboleQuotationMark){
+    }
+    else if(tokens[start+1].type==constTokens.symboleQuotationMark){
+        variableValue= helper.searchString(tokens, start+1);
+    }
+    else if(tokens[start+1].type==constTokens.symboleApostrohe){
         variableValue= helper.searchString(tokens, start+1);
     }
     return {type: constParser.expressionAffectation, variableName: variableName, variableValue: variableValue};
