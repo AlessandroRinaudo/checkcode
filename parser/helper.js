@@ -10,7 +10,13 @@ const searchString= (tokens, start)=>{
             findend= true;
             end= i;
             break;
-        }else{
+        }
+        else if(tokens[i].type==constTokens.symboleApostrohe){
+            findend= true;
+            end= i;
+            break;
+        }
+        else{
             string.push(tokens[i].value);
         }
     }
@@ -33,7 +39,13 @@ exports.searchArgs= (tokens, start)=>{
             args.push({type:constParser.typeVariable, variableName:tokens[i].value});
         }else if(tokens[i].type==constTokens.typeNumber){
             args.push(tokens[i]);
-        }else if(tokens[i].type==constTokens.symboleQuotationMark){
+        }
+        else if(tokens[i].type==constTokens.symboleQuotationMark){
+            let temp= searchString(tokens, i);
+            args.push(temp);
+            i=temp.end;
+        }
+        else if(tokens[i].type==constTokens.symboleApostrohe){
             let temp= searchString(tokens, i);
             args.push(temp);
             i=temp.end;
