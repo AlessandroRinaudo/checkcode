@@ -8,6 +8,8 @@ exports.create= (type, tokens, start)=>{
             return objectMethodCall(tokens, start);
         case constParser.expressionDeclaration:
                 return variableDeclaration(tokens, start);
+        case constParser.functionDeclaration:
+                return functionDeclaration(tokens, start);
         case constParser.expressionAffectation:
             return variableAffectation(tokens, start);
     }
@@ -25,6 +27,11 @@ function variableDeclaration(tokens, start){
     if(tokens[start+1].type != constTokens.typeWord) throw constParser.errorMissingWord;
     let variableName= tokens[start+1].value;
     return {type: constParser.expressionDeclaration, variableName: variableName};
+}
+function functionDeclaration(tokens, start){
+    if(tokens[start+1].type != constTokens.typeWord) throw constParser.errorMissingWord;
+    let functionName= tokens[start+1].value;
+    return {type: constParser.functionDeclaration, functionName: functionName};
 }
 
 function variableAffectation(tokens, start){

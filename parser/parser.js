@@ -21,7 +21,12 @@ module.exports=(tokens) =>{
                 i= expression.variableValue.end;
             }
         //utilisation de methode
-        }else if(i<tokens.length-1 && tokens[i].type == constTokens.typeWord &&  tokens[i+1].type==constTokens.symbolePoint){
+        }
+         // décalration d'une fonction
+         else if (tokens[i].type == constTokens.typeFonction) {
+            expression= factory.create(constParser.functionDeclaration, tokens, i);
+        }
+        else if(i<tokens.length-1 && tokens[i].type == constTokens.typeWord &&  tokens[i+1].type==constTokens.symbolePoint){
             expression = factory.create(constParser.expressionMethodCall, tokens, i);
             i= expression.end;
         }
