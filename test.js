@@ -1,2 +1,2 @@
-let tiny ="cc"
+let tiny ="cc";
 const hey ="lol"
