@@ -28,9 +28,12 @@ exports.specialChars = {
     and: { regRule: /(\&\&)/g, value: '&&' },
     or: { regRule: /(\|\|)/g, value: '||' },
     function:  {regRule: /function/g, value:"function"},
+    // elseIf:  {regRule: /else if/g, value:"else if"},
     if:  {regRule: /if/g, value:"if"},
     else:  {regRule: /else/g, value:"else"},
-    return:  {regRule: /return/g, value:"return"}
+    return:  {regRule: /return/g, value:"return"},
+    true:  {regRule: /true/g, value:"true"},
+    false:  {regRule: /false/g, value:"false"}
 
 
 };
@@ -57,6 +60,8 @@ exports.symboleComment             = "comment";
 exports.symboleIf                  = "if";
 exports.symboleElse                = "else";
 exports.symboleReturn              = "return";
+exports.symboleBool                = "boolean";
+exports.symboleBool                = "boolean";
 
 
 exports.typeNumber              = "number";
@@ -90,7 +95,9 @@ exports.typeComment             = "comment";
 exports.typeIf                  = "if";
 exports.typeElse                = "else";
 
-exports.typeReturn                = "return";
+exports.typeReturn              = "return";
+exports.typeBool                = "boolean";
+exports.typeBool                = "boolean";
 
 
 exports.errorNoTokenFound = 'No Tokens Found.';

@@ -75,6 +75,9 @@ module.exports = function(code) {
             else if (t == 'return') {
               tokens.push({ type: constTokens.typeReturn, value: t })
             }
+            else if (t == 'true'||'false') {
+              tokens.push({ type: constTokens.typeBool, value: t })
+            }
             else
               tokens.push({type: constTokens.typeWord, value: t})
         }
