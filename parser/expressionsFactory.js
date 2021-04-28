@@ -1,6 +1,8 @@
 const constTokens= require("../tokenizer/constants");
 const constParser= require("./constants");
 const helper= require("./helper");
+const parser= require("./parser");
+const tokenizer= require("../tokenizer/tokenizer");
 
 exports.create= (type, tokens, start)=>{
     switch(type){
@@ -53,8 +55,19 @@ function variableAffectation(tokens, start){
 }
 
 function conditionIf(tokens, start){
-    if(tokens[start-1].type != constTokens.typeWord) throw constParser.errorMissingWord;
-    let conditionName= tokens[start-1].value;
+    //if(tokens[start-1].type != constTokens.typeWord) throw constParser.errorMissingWord;
+    if(tokens[start+1].type != constTokens.typeOpenBrace) throw constParser.errorMissingOpenParenthesis;//test si il manque une parenthese apres le if
+    let expression=""; //recupere toute les condition dans if
+    let nombre = 0; //recupere le nombre totalque i a parcourue
+    for( i=2; (tokens[start+i].type!= constTokens.typeCloseBrace && i<=10 /*&& tokens[start+i].type!= constTokens. ajouter la contidition pour l'accolade */); i++ ){
+        expression+=tokens[start+i].value+" ";//l'espace sert a separer avec les autres valeurs
+        nombre=i;
+    }
+    let token = tokenizer(expression);
+    console.log(token);
+    //let ast = parser(token);
+    if(tokens[start+nombre+1].type != constTokens.typeCloseBrace) throw constParser.errorMissingCloseParenthesis;
+    let conditionName= expression;
     return {type: constParser.conditionIf, conditionName: conditionName};
     
 }
