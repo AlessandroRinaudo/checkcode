@@ -4,6 +4,8 @@ const factory= require("./expressionsFactory");
 
 module.exports=(tokens) =>{
     let AST= [];
+    let typeFunction = [];
+    let inFunction = false;
     for(let i= 0; i<tokens.length; i++){
         let expression= null;
         //déclaration de variable
@@ -25,6 +27,10 @@ module.exports=(tokens) =>{
          // décalration d'une fonction
          else if (tokens[i].type == constTokens.typeFonction) {
             expression= factory.create(constParser.functionDeclaration, tokens, i);
+        }
+        else if (tokens[i].type == constTokens.typeOpenBrace) {
+            expression = factory.create(constParser.functionAffectation, tokens, i);
+            i = expression.end;
         }
         else if(i<tokens.length-1 && tokens[i].type == constTokens.typeWord &&  tokens[i+1].type==constTokens.symbolePoint){
             expression = factory.create(constParser.expressionMethodCall, tokens, i);

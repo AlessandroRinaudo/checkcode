@@ -12,6 +12,8 @@ exports.create= (type, tokens, start)=>{
                 return functionDeclaration(tokens, start);
         case constParser.expressionAffectation:
             return variableAffectation(tokens, start);
+        case constParser.functionAffectation:
+            return functionAffectation(tokens, start);
     }
 }
 
@@ -48,4 +50,29 @@ function variableAffectation(tokens, start){
         variableValue= helper.searchString(tokens, start+1);
     }
     return {type: constParser.expressionAffectation, variableName: variableName, variableValue: variableValue};
+}
+
+function functionAffectation(tokens, start) {
+    if (tokens[start].type != constTokens.typeOpenBrace) throw constParser.errorMissingBrace;
+    let functionParam = [];
+    let functionName
+    for (let i = start - 2; i > 0; i--) {
+        if (tokens[i].type == constTokens.typeOpenParenthese) {
+            functionName = tokens[i - 1].value;
+            break;
+        }
+        functionParam.push(tokens[i]);
+    }
+    let functionValue = [];
+    let end = start;
+    for (let i = start + 1; i< tokens.length; i++){
+        if (tokens[i].type == constTokens.typeCloseBrace){
+            end = i
+            break;
+        }
+        functionValue.push(tokens[i]);
+    }
+    console.log(functionParam)
+    console.log(functionValue)
+    return { type: constParser.functionAffectation, functionParam: functionParam, functionName: functionName, functionValue: functionValue, end: end };
 }

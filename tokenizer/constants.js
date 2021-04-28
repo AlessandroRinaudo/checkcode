@@ -11,8 +11,8 @@ exports.specialChars = {
     point:           {regRule: /\./g, value:'.'},
     virgule:           {regRule: /\,/g, value:','},
     quotationMark:  {regRule: /\"/g, value:'"'},
-    openParenthese:  {regRule: /\(/g, value:'"'},
-    closeParenthese:  {regRule: /\)/g, value:'"'},
+    openParenthese:  {regRule: /\(/g, value:'('},
+    closeParenthese:  {regRule: /\)/g, value:')'},
     openBrace:  {regRule: /\{/g, value:'{'},
     closeBrace:  {regRule: /\}/g, value:'}'},
     openSquareBracket:  {regRule: /\[/g, value:'['},
@@ -66,6 +66,8 @@ exports.symboleBool                = "boolean";
 
 exports.typeNumber              = "number";
 exports.typeArrow               = "arrow";
+exports.typeOpenParenthese      = "openParenthese";
+exports.typeCloseParenthese     = "closeParenthese";
 exports.typeWord                = "word";
 exports.typeConst               = "constant";
 exports.typeVar                 = "variable";
