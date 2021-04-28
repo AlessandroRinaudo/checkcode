@@ -27,21 +27,37 @@ module.exports=(tokens) =>{
          // décalration d'une fonction
          else if (tokens[i].type == constTokens.typeFonction) {
             expression= factory.create(constParser.functionDeclaration, tokens, i);
-        }
-        else if (tokens[i].type == constTokens.typeOpenBrace) {
-            expression = factory.create(constParser.functionAffectation, tokens, i);
+            AST.push(expression);
             i = expression.end;
+            inFunction = true;
+            expression = ""
+        }
+        else if (tokens[i].type == constTokens.typeCloseBrace) {
+            typeFunction.push(tokens[i])
+            AST.push(typeFunction);
+            inFunction = false;
+            i++
         }
         else if(i<tokens.length-1 && tokens[i].type == constTokens.typeWord &&  tokens[i+1].type==constTokens.symbolePoint){
             expression = factory.create(constParser.expressionMethodCall, tokens, i);
             i= expression.end;
         }
         if(expression){
-            // console.log("je suis dans le if");
-            AST.push(expression);
+            if (inFunction == true) {
+                typeFunction.push(expression)
+            }
+            else{
+                // console.log("je suis dans le if");
+                AST.push(expression);
+            }
         }else{
-            // console.log('je suis dans le else');
-            AST.push(tokens[i]);
+            if (inFunction == true) {
+                typeFunction.push(tokens[i])
+            }
+            else{
+                // console.log('je suis dans le else');
+                AST.push(tokens[i]);
+            }
         }
     }
     return AST;

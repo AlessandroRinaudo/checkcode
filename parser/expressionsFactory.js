@@ -33,7 +33,16 @@ function variableDeclaration(tokens, start){
 function functionDeclaration(tokens, start){
     if(tokens[start+1].type != constTokens.typeWord) throw constParser.errorMissingWord;
     let functionName= tokens[start+1].value;
-    return {type: constParser.functionDeclaration, functionName: functionName};
+    let functionParam = [];
+    let end = start;
+    for (let i = start + 3; i < tokens.length; i++) {
+        if (tokens[i].type == constTokens.typeCloseParenthese) {
+            end = i + 1
+            break;
+        }
+        functionParam.push(tokens[i]);
+    }
+    return { type: constParser.functionDeclaration, functionName: functionName, functionParam: functionParam, end: end};
 }
 
 function variableAffectation(tokens, start){
