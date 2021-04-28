@@ -28,6 +28,7 @@ module.exports=(tokens) =>{
         }
          else if (tokens[i].type == constTokens.typeIf ) {
             expression= factory.create(constParser.conditionIf, tokens, i);
+            i+= expression.nombre_iteration;
         }
         else if(i<tokens.length-1 && tokens[i].type == constTokens.typeWord &&  tokens[i+1].type==constTokens.symbolePoint){
             expression = factory.create(constParser.expressionMethodCall, tokens, i);
