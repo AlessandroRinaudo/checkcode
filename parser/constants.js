@@ -9,6 +9,7 @@ exports.ifStatement= "ifStatement";
 exports.expressionAffectation= "variableAffectation";
 exports.expressionMethodCall= "objectMethodCall";
 exports.expressionComment = "comment";
+exports.expressionBlockComment = "blockComment"
 exports.conditionIf  = "conditionIf";
 
 exports.declarationVariable = ["var","let", "const"]; // ici on crée la valeur qui reconnait les types des variables

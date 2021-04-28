@@ -20,6 +20,8 @@ exports.create= (type, tokens, start)=>{
             return functionAffectation(tokens, start);
         case constParser.expressionComment:
             return comment(tokens, start);
+        case constParser.expressionBlockComment:
+            return blockComment(tokens, start);
     }
 }
 
@@ -132,4 +134,24 @@ function comment(tokens, start) {
         }
     }
     return { type: constParser.expressionComment, body: body, end: end };
+}
+
+function blockComment(tokens, start) {
+    let body = "";
+    for (let i = start + 1; i < tokens.length; i++) {
+        if (tokens[i].type == constTokens.typeBlockCommentClose) {
+            end = i
+            break;
+        }
+        if (tokens[i].type == constTokens.typeNewLine){
+            continue;
+        }
+        if (tokens[i].value) {
+            body = body + tokens[i].value + " ";
+        }
+        else {
+            body = body + tokens[i].type + " ";
+        }
+    }
+    return { type: constParser.expressionBlockComment, body: body, end: end };
 }

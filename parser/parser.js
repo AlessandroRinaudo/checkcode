@@ -51,6 +51,10 @@ module.exports=(tokens) =>{
             expression = factory.create(constParser.expressionComment, tokens, i);
             i = expression.end;
         }
+        else if (tokens[i].type == constTokens.typeBlockCommentOpen) {
+            expression = factory.create(constParser.expressionBlockComment, tokens, i);
+            i = expression.end;
+        }
         else if (tokens[i].type == constTokens.typeCloseBrace) {
             if (inIf == true){
                 typeIf.push(tokens[i])

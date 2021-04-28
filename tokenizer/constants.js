@@ -24,6 +24,8 @@ exports.specialChars = {
     addition: {regRule: /(\+)/g, value:'+'},
     soustraction: { regRule: /(\-)/g, value: '-' },
     comment:  {regRule: /\/\//g, value:"comment"},
+    blockCommentOpen: { regRule: /\/\*/g, value: "/*" },
+    blockCommentClose: { regRule: /\*\//g, value: "*/" },
     division: { regRule: /(\/)/g, value: '/' },
     and: { regRule: /(\&\&)/g, value: '&&' },
     or: { regRule: /(\|\|)/g, value: '||' },
@@ -34,7 +36,6 @@ exports.specialChars = {
     return:  {regRule: /return/g, value:"return"},
     true:  {regRule: /true/g, value:"true"},
     false:  {regRule: /false/g, value:"false"}
-
 
 };
 
@@ -101,7 +102,8 @@ exports.typeElse                = "else";
 exports.typeReturn              = "return";
 exports.typeBool                = "boolean";
 exports.typeNewLine             = "newLine";
-
+exports.typeBlockCommentOpen    = "blockCommentOpen";
+exports.typeBlockCommentClose   = "blockCommentClose";
 
 
 exports.errorNoTokenFound = 'No Tokens Found.';
