@@ -1,4 +1,4 @@
-const _ = require('lodash');
+//const _ = require('lodash');
 exports.syntaxCodeOk = (ast) => {
   return 1
 }
@@ -20,14 +20,12 @@ exports.allVariableAre = (ast) => {
       j++;
     }
   }
-  console.log(variablesAffectations);
+  //console.log(variablesAffectations);
   for(i=0;i<variablesDeclarations.length;i++) {
     for(j=0;j<variablesAffectations.length;j++) {
       if(variablesAffectations[j]=== variablesDeclarations[i]) {
         // console.log(1,variablesAffectations[j]);
-        delete variablesAffectations[j]
-        console.log(variablesAffectations);
-        console.log(variablesAffectations.size);
+        variablesAffectations[j] = true;
       }
 
     }
@@ -36,14 +34,15 @@ exports.allVariableAre = (ast) => {
 
   console.log("affectations");
   for(i=0;i<variablesAffectations.length;i++) {
-    if(variablesAffectations[i]!={}) {}
-    console.log(variablesAffectations[i]);
+    if(variablesAffectations[i]!=true) {
+      return 0;
+    }
   }
 
    
-  console.log("Declarations");
-  for(i=0;i<variablesDeclarations.length;i++)
-    console.log(variablesDeclarations[i]);
+  // console.log("Declarations");
+  // for(i=0;i<variablesDeclarations.length;i++)
+  //   console.log(variablesDeclarations[i]);
 
   return 1
 }
