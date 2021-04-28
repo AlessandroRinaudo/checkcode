@@ -9,7 +9,7 @@ module.exports=(tokens) =>{
     let typeIf = [];
     let inIf = false;
     for(let i= 0; i<tokens.length; i++){
-        let expression= null;
+        let expression = null;
         //déclaration de variable
         if(tokens[i].type == constTokens.typeConst|| tokens[i].type == constTokens.typeVar || tokens[i].type == constTokens.typeLet){
             expression= factory.create(constParser.expressionDeclaration, tokens, i);
@@ -53,16 +53,16 @@ module.exports=(tokens) =>{
                 inIf = false;
                 i++
                 if (inFunction == true)
-                    typeFunction.push(typeIf)
+                    typeFunction[typeFunction.length - 1].ifBody = typeIf
                 else
-                    AST.push(typeIf);
+                    AST[AST.length - 1].ifBody = typeIf
                 typeIf = []
             }
             else if (inFunction == true) {
                 typeFunction.push(tokens[i])
                 inFunction = false;
                 i++
-                AST.push(typeFunction);
+                AST[AST.length - 1].functionBody = typeFunction
                 typeFunction = []
             }
         }
@@ -78,18 +78,16 @@ module.exports=(tokens) =>{
                 typeFunction.push(expression)
             }
             else{
-                console.log("je suis dans le if");
                 AST.push(expression);
             }
         }else{
             if (inIf == true) {
-                typeIf.push(expression)
+                typeIf.push(tokens[i])
             }
             else if (inFunction == true) {
                 typeFunction.push(tokens[i])
             }
             else{
-                console.log('je suis dans le else');
                 AST.push(tokens[i]);
             }
         }

@@ -44,9 +44,11 @@ function functionDeclaration(tokens, start){
             end = i + 1
             break;
         }
-        functionParam.push(tokens[i]);
+        if (tokens[i].type == constTokens.typeWord) {
+            functionParam.push(tokens[i].value);
+        }
     }
-    return { type: constParser.functionDeclaration, functionName: functionName, functionParam: functionParam, end: end};
+    return { type: constParser.functionDeclaration, functionName: functionName, functionParam: functionParam, functionBody: [], end: end};
 }
 
 function variableAffectation(tokens, start){
@@ -85,8 +87,8 @@ function functionAffectation(tokens, start) {
         }
         functionValue.push(tokens[i]);
     }
-    console.log(functionParam)
-    console.log(functionValue)
+    //console.log(functionParam)
+    //console.log(functionValue)
     return { type: constParser.functionAffectation, functionParam: functionParam, functionName: functionName, functionValue: functionValue, end: end };
 }
 
@@ -110,5 +112,5 @@ function conditionIf(tokens, start){
     if(tokens[start+nombre+2].type != constTokens.typeOpenBrace) throw constParser.errorMissingOpenBrace;
     let conditionName= expression;
     nombre= start+nombre;
-    return {type: constParser.conditionIf, conditionName: conditionName, nombre_iteration:nombre };
+    return {type: constParser.conditionIf, conditionName: conditionName, ifBody: [], nombre_iteration:nombre };
 }
