@@ -6,6 +6,8 @@ module.exports=(tokens) =>{
     let AST= [];
     let typeFunction = [];
     let inFunction = false;
+    let typeIf = [];
+    let inIf = false;
     for(let i= 0; i<tokens.length; i++){
         let expression= null;
         //déclaration de variable
@@ -32,30 +34,62 @@ module.exports=(tokens) =>{
             inFunction = true;
             expression = ""
         }
+        else if (tokens[i].type == constTokens.typeIf) {
+            expression = factory.create(constParser.conditionIf, tokens, i);
+            if (inFunction == true){
+                typeFunction.push(expression);
+            }
+            else {
+                AST.push(expression);
+            }
+            i = expression.nombre_iteration;
+            inIf = true;
+            expression = ""
+
+        }
         else if (tokens[i].type == constTokens.typeCloseBrace) {
-            typeFunction.push(tokens[i])
-            AST.push(typeFunction);
-            inFunction = false;
-            i++
+            if (inIf == true){
+                typeIf.push(tokens[i])
+                inIf = false;
+                i++
+                if (inFunction == true)
+                    typeFunction.push(typeIf)
+                else
+                    AST.push(typeIf);
+                typeIf = []
+            }
+            else if (inFunction == true) {
+                typeFunction.push(tokens[i])
+                inFunction = false;
+                i++
+                AST.push(typeFunction);
+                typeFunction = []
+            }
         }
         else if(i<tokens.length-1 && tokens[i].type == constTokens.typeWord &&  tokens[i+1].type==constTokens.symbolePoint){
             expression = factory.create(constParser.expressionMethodCall, tokens, i);
             i= expression.end;
         }
         if(expression){
-            if (inFunction == true) {
+            if (inIf == true) {
+                typeIf.push(expression)
+            }
+            else if (inFunction == true) {
                 typeFunction.push(expression)
             }
             else{
-                // console.log("je suis dans le if");
+                console.log("je suis dans le if");
                 AST.push(expression);
             }
         }else{
-            if (inFunction == true) {
+            if (inIf == true) {
+                typeIf.push(expression)
+            }
+            else if (inFunction == true) {
                 typeFunction.push(tokens[i])
             }
             else{
-                // console.log('je suis dans le else');
+                console.log('je suis dans le else');
                 AST.push(tokens[i]);
             }
         }

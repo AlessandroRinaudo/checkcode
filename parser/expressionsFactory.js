@@ -1,6 +1,8 @@
 const constTokens= require("../tokenizer/constants");
 const constParser= require("./constants");
 const helper= require("./helper");
+const parser= require("../parser/parser");
+const tokenizer= require("../tokenizer/tokenizer");
 
 exports.create= (type, tokens, start)=>{
     switch(type){
@@ -10,6 +12,8 @@ exports.create= (type, tokens, start)=>{
                 return variableDeclaration(tokens, start);
         case constParser.functionDeclaration:
                 return functionDeclaration(tokens, start);
+        case constParser.conditionIf:
+                return conditionIf(tokens, start);
         case constParser.expressionAffectation:
             return variableAffectation(tokens, start);
         case constParser.functionAffectation:
@@ -84,4 +88,27 @@ function functionAffectation(tokens, start) {
     console.log(functionParam)
     console.log(functionValue)
     return { type: constParser.functionAffectation, functionParam: functionParam, functionName: functionName, functionValue: functionValue, end: end };
+}
+
+function conditionIf(tokens, start){
+    //if(tokens[start-1].type != constTokens.typeWord) throw constParser.errorMissingWord;
+    if(tokens[start+1].type != constTokens.typeOpenParenthese ) throw constParser.errorMissingOpenParenthesis;//test si il manque une parenthese apres le if
+    let expression=[]; //recupere toute les condition dans if
+    let nombre = 0; //recupere le nombre totalque i a parcourue
+    for( i=2; (tokens[start+i].type!= constTokens.typeCloseParenthese && i<=10 /*&& tokens[start+i].type!= constTokens. ajouter la contidition pour l'accolade */); i++ ){
+        if ( tokens[start+i].value)
+            expression = expression + (tokens[start+i].value) + " ";//l'espace sert a separer avec les autres valeurs
+        else
+            expression = expression + (tokens[start + i].type) + " ";//l'espace sert a separer avec les autres valeurs
+        nombre=i;
+    }
+    //let token = tokenizer(expression);
+    //console.log(token);
+    //let ast = parser(token);
+    //console.log(ast);
+    if(tokens[start+nombre+1].type != constTokens.typeCloseParenthese) throw constParser.errorMissingCloseParenthesis;
+    if(tokens[start+nombre+2].type != constTokens.typeOpenBrace) throw constParser.errorMissingOpenBrace;
+    let conditionName= expression;
+    nombre= start+nombre;
+    return {type: constParser.conditionIf, conditionName: conditionName, nombre_iteration:nombre };
 }
