@@ -14,15 +14,12 @@ exports.from = (code) => {
         // console.log("hereee",helper.allDeclaredIsUsed(ast));
         console.log("--------", "Result", "--------");
         let result = {
-            // allDeclaredIsUsed: helper.allDeclaredIsUsed(ast),
-            // allUsedIsDeclared: helper.allUsedIsDeclared(ast),
-            // allExpressionFinished: helper.allExpressionFinished(ast),
-            // numberLine: helper.numberLine(ast),
-            // indentation: helper.indentation(ast)
-            syntaxCodeOk:helper.syntaxCodeOk(ast)
+            syntaxCodeOk:helper.syntaxCodeOk(ast),
+            allVariableAre:helper.allVariableAre(ast)
         };
         return {
-            score: result.syntaxCodeOk,
+            score: result.syntaxCodeOk+
+            result.allVariableAre,
             details: result
         }
     } catch (e) {
