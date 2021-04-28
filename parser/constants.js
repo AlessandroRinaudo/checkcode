@@ -13,5 +13,6 @@ exports.declarationVariable = ["var","let", "const"]; // ici on crée la valeur 
 
 exports.errorMissingOpenParenthesis = "Error: missing a open parenthesis";
 exports.errorMissingCloseParenthesis= "Error: missing a close parenthesis";
+exports.errorMissingOpenBrace = "Error : missing a open brace";
 exports.errorMissingQuotationMark= "Error: missing quotation mark";
 exports.errorMissingWord= "Error: missing a word for valid expression";
