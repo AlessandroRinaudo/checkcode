@@ -100,6 +100,7 @@ exports.typeIf                  = "if";
 exports.typeElse                = "else";
 exports.typeReturn              = "return";
 exports.typeBool                = "boolean";
+exports.typeNewLine             = "newLine";
 
 
 

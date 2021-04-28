@@ -18,6 +18,8 @@ exports.create= (type, tokens, start)=>{
             return variableAffectation(tokens, start);
         case constParser.functionAffectation:
             return functionAffectation(tokens, start);
+        case constParser.expressionComment:
+            return comment(tokens, start);
     }
 }
 
@@ -113,4 +115,21 @@ function conditionIf(tokens, start){
     let conditionName= expression;
     nombre= start+nombre;
     return {type: constParser.conditionIf, conditionName: conditionName, ifBody: [], nombre_iteration:nombre };
+}
+
+function comment(tokens, start) {
+    let body = "";
+    for (let i = start + 1; i < tokens.length; i++) {
+        if (tokens[i].type == constTokens.typeNewLine) {
+            end = i
+            break;
+        }
+        if (tokens[i].value) {
+            body = body + " " + tokens[i].value;
+        }
+        else {
+            body = body + " " + tokens[i].type;
+        }
+    }
+    return { type: constParser.expressionComment, body: body, end: end };
 }
