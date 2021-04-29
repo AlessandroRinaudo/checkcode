@@ -21,3 +21,5 @@ b=4
 d="string";
 let f;
 f='c';
+
+if (a) {}
