@@ -1,0 +1,38 @@
+APPLICATION :
+  TOKEN :
+    word                                    [x]
+    newLine                                 [x]
+    number                                  [x]
+    boolean                                 [x]
+    differentes                             [x]
+    init Fin Instructions                   [x]
+    virgules                                [x]
+    apostrophes                             [x]
+    exc..                                   [x]
+
+  AST :
+    Déclarations des variables              [x]
+    Affectations des variables              [x]
+    Les fonctions                           [x]
+    Les conditions (if)                     [x]
+    Les commentaires                        [x]
+    opérations                              [x]
+
+  LE SCORE :
+    syntax                                  [x]
+    décalarations                           [x]
+    utilisation des variables               [x]
+    fermeture accolades                     [x]
+    le nb des lignes                        []
+
+DIAPOS :
+  Contextes                                 []
+  Analyse fonctionel                        []
+  Analyse conceptuel                        []
+  Méthodologie                              []
+  Difficultés                               []
+  Conclusion                                []
+
+PRÉPARATION SOUTENANCE :
+  Répeter 3 fois 15 minutes : 16h30         []
+  
