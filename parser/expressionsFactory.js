@@ -149,20 +149,17 @@ function comment(tokens, start) {
 }
 
 function blockComment(tokens, start) {
-    let body = "";
+    let body = [];
     for (let i = start + 1; i < tokens.length; i++) {
         if (tokens[i].type == constTokens.typeBlockCommentClose) {
             end = i
             break;
         }
-        if (tokens[i].type == constTokens.typeNewLine){
-            continue;
-        }
         if (tokens[i].value) {
-            body = body + tokens[i].value + " ";
+            body.push(tokens[i].value);
         }
         else {
-            body = body + tokens[i].type + " ";
+            body.push(tokens[i].type);
         }
     }
     return { type: constParser.expressionBlockComment, body: body, end: end };

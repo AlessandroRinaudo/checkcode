@@ -157,5 +157,35 @@ exports.allOpenAndCloseIsOk = (ast) => {
 }
 
 exports.linesNumberOk = (ast) => {
+  let nbLine = 1
+  for (i = 0; i < ast.length; i++) {
+    if (ast[i].type == "newLine") {
+      nbLine++;
+    }
+    if (ast[i].type == "conditionIf"){
+      for (j = 0; j < ast[i].ifBody.length; j++) {
+        if (ast[i].ifBody[j] == "newLine") {
+          nbLine++;
+        }
+      }
+    }
+    if (ast[i].type == "functionDeclaration") {
+      for (j = 0; j < ast[i].functionBody.length; j++) {
+        if (ast[i].functionBody[j] == "newLine") {
+          nbLine++;
+        }
+      }
+    }
+    if (ast[i].type == "blockComment") {
+      for (j = 0; j < ast[i].body.length; j++) {
+        if (ast[i].body[j] == "newLine") {
+          nbLine++;
+        }
+      }
+    }
+  }
+  if (nbLine > 200){
+    return 0;
+  }
   return 1
 }
