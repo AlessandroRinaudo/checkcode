@@ -22,6 +22,14 @@ exports.create= (type, tokens, start)=>{
             return comment(tokens, start);
         case constParser.expressionBlockComment:
             return blockComment(tokens, start);
+        case constParser.expressionAddition:
+            return addition(tokens, start);
+        case constParser.expressionMultiplication:
+            return multiplication(tokens, start);
+        case constParser.expressionDivision:
+            return division(tokens, start);
+        case constParser.expressionSoustraction:
+            return soustraction(tokens, start);
     }
 }
 
@@ -59,6 +67,9 @@ function variableAffectation(tokens, start){
     if(tokens[start-1].type != constTokens.typeWord) throw constParser.errorMissingWord;
     let variableName= tokens[start-1].value;
     let variableValue= null;
+    if (tokens[start + 1].type == constTokens.typeWord) {
+        variableValue = tokens[start + 1];
+    }
     if(tokens[start+1].type==constTokens.typeNumber){
         variableValue= tokens[start+1];
     }
@@ -121,6 +132,7 @@ function conditionIf(tokens, start){
 
 function comment(tokens, start) {
     let body = "";
+    let end = start
     for (let i = start + 1; i < tokens.length; i++) {
         if (tokens[i].type == constTokens.typeNewLine) {
             end = i
@@ -154,4 +166,172 @@ function blockComment(tokens, start) {
         }
     }
     return { type: constParser.expressionBlockComment, body: body, end: end };
+}
+
+function addition(tokens, start) {
+    let mememberLeft = "";
+    let mememberRight = "";
+    let end = start + 1
+    if (tokens[start - 1].type == constTokens.typeCloseParenthese){
+        end = start + 1
+        let startExpression = start - 1
+        for (let i = start - 1; i >= 0; i--){
+            if (tokens[i].type == constTokens.typeOpenParenthese){
+                startExpression = i + 1
+                break;
+            }
+        }
+        console.log(startExpression)
+        for (let j = startExpression; j < start -1; j++) {
+            if (tokens[j].value)
+                mememberLeft = mememberLeft + tokens[j].value + " "
+            else
+                mememberLeft = mememberLeft + tokens[j].type + " "
+        }
+    }
+    else
+        mememberLeft = tokens[start - 1].value
+    if (tokens[start + 1].type == constTokens.typeOpenParenthese){
+        for(let k = start + 2; k < tokens.length; k++){
+            if (tokens[k].type == constTokens.typeCloseParenthese){
+                end = k
+                break
+            }
+            else {
+                if (tokens[k].value)
+                    mememberRight = mememberRight + tokens[k].value + " "
+                else
+                    mememberRight = mememberRight + tokens[k].type + " "
+            }
+        }
+    }
+    else
+        mememberRight = tokens[start + 1].value
+    return { type: constParser.expressionAddition, mememberLeft: mememberLeft, mememberRight: mememberRight, end: end };
+}
+
+function multiplication(tokens, start) {
+    let mememberLeft = "";
+    let mememberRight = "";
+    let end = start + 1
+    if (tokens[start - 1].type == constTokens.typeCloseParenthese) {
+        end = start + 1
+        let startExpression = start - 1
+        for (let i = start - 1; i >= 0; i--) {
+            if (tokens[i].type == constTokens.typeOpenParenthese) {
+                startExpression = i + 1
+                break;
+            }
+        }
+        console.log(startExpression)
+        for (let j = startExpression; j < start - 1; j++) {
+            if (tokens[j].value)
+                mememberLeft = mememberLeft + tokens[j].value + " "
+            else
+                mememberLeft = mememberLeft + tokens[j].type + " "
+        }
+    }
+    else
+        mememberLeft = tokens[start - 1].value
+    if (tokens[start + 1].type == constTokens.typeOpenParenthese) {
+        for (let k = start + 2; k < tokens.length; k++) {
+            if (tokens[k].type == constTokens.typeCloseParenthese) {
+                end = k
+                break
+            }
+            else {
+                if (tokens[k].value)
+                    mememberRight = mememberRight + tokens[k].value + " "
+                else
+                    mememberRight = mememberRight + tokens[k].type + " "
+            }
+        }
+    }
+    else
+        mememberRight = tokens[start + 1].value
+    return { type: constParser.expressionMultiplication, mememberLeft: mememberLeft, mememberRight: mememberRight, end: end };
+}
+
+function division(tokens, start) {
+    let mememberLeft = "";
+    let mememberRight = "";
+    let end = start + 1
+    if (tokens[start - 1].type == constTokens.typeCloseParenthese) {
+        end = start + 1
+        let startExpression = start - 1
+        for (let i = start - 1; i >= 0; i--) {
+            if (tokens[i].type == constTokens.typeOpenParenthese) {
+                startExpression = i + 1
+                break;
+            }
+        }
+        console.log(startExpression)
+        for (let j = startExpression; j < start - 1; j++) {
+            if (tokens[j].value)
+                mememberLeft = mememberLeft + tokens[j].value + " "
+            else
+                mememberLeft = mememberLeft + tokens[j].type + " "
+        }
+    }
+    else
+        mememberLeft = tokens[start - 1].value
+    if (tokens[start + 1].type == constTokens.typeOpenParenthese) {
+        for (let k = start + 2; k < tokens.length; k++) {
+            if (tokens[k].type == constTokens.typeCloseParenthese) {
+                end = k
+                break
+            }
+            else {
+                if (tokens[k].value)
+                    mememberRight = mememberRight + tokens[k].value + " "
+                else
+                    mememberRight = mememberRight + tokens[k].type + " "
+            }
+        }
+    }
+    else
+        mememberRight = tokens[start + 1].value
+    return { type: constParser.expressionDivision, mememberLeft: mememberLeft, mememberRight: mememberRight, end: end };
+}
+
+function soustraction(tokens, start) {
+    let mememberLeft = "";
+    let mememberRight = "";
+    let end = start + 1
+    if (tokens[start - 1].type == constTokens.typeCloseParenthese) {
+        end = start + 1
+        let startExpression = start - 1
+        for (let i = start - 1; i >= 0; i--) {
+            if (tokens[i].type == constTokens.typeOpenParenthese) {
+                startExpression = i + 1
+                break;
+            }
+        }
+        console.log(startExpression)
+        for (let j = startExpression; j < start - 1; j++) {
+            if (tokens[j].value)
+                mememberLeft = mememberLeft + tokens[j].value + " "
+            else
+                mememberLeft = mememberLeft + tokens[j].type + " "
+        }
+    }
+    else
+        mememberLeft = tokens[start - 1].value
+    if (tokens[start + 1].type == constTokens.typeOpenParenthese) {
+        for (let k = start + 2; k < tokens.length; k++) {
+            if (tokens[k].type == constTokens.typeCloseParenthese) {
+                end = k
+                break
+            }
+            else {
+                if (tokens[k].value)
+                    mememberRight = mememberRight + tokens[k].value + " "
+                else
+                    mememberRight = mememberRight + tokens[k].type + " "
+            }
+        }
+    }
+    else
+        mememberRight = tokens[start + 1].value
+    return { type: constParser.expressionSoustraction, mememberLeft: mememberLeft, mememberRight: mememberRight, end: end };
 }
