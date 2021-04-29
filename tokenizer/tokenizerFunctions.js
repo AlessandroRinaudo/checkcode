@@ -16,12 +16,14 @@ exports.from = (code) => {
         let result = {
             syntaxCodeOk:helper.syntaxCodeOk(ast),
             allVariableAre:helper.allVariableAre(ast),
-            allVariablesAreUsed:helper.allVariablesAreUsed(ast) 
+            allVariablesAreUsed:helper.allVariablesAreUsed(ast),
+            allOpenAndCloseIsOk:helper.allOpenAndCloseIsOk(ast) 
         };
         return {
             score: result.syntaxCodeOk+
             result.allVariableAre+
-            result.allVariablesAreUsed,
+            result.allVariablesAreUsed+
+            result.allOpenAndCloseIsOk,
             details: result
         }
     } catch (e) {
