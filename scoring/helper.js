@@ -94,7 +94,7 @@ exports.allOpenAndCloseIsOk = (ast) => {
   // test si une accolade est bien fermé
   for(i=0; i < ast.length; i++){
     //console.log(i, ast[i], "1");
-    if(ast[i].type=="closeBrace"){
+    if(ast[i].type=="closeBrace"){ //test si tous les tous les accolade avant sont bon
       let nbOpen=0;
       let nbClose=1;
       console.log("iccciiiii");
@@ -109,7 +109,30 @@ exports.allOpenAndCloseIsOk = (ast) => {
           console.log("Close");
         }
       }    
-      if(nbOpen!= nbClose && nbOpen > nbClose /* ajouter un test pour savoir si il ya une autre ouverture a la suite*/ ){
+      if(nbOpen!= nbClose && nbOpen > nbClose){
+        console.log("ya trop de openBrace");
+        return 0;
+      }
+      if(nbOpen!= nbClose && nbOpen < nbClose ){
+        console.log("ya trop de closeBrace");
+        return 0;
+      }
+    }
+    if(ast[i].type=="openBrace"){ //test si il a le closebrace pour ce openbrace
+      let nbOpen=1;
+      let nbClose=0;
+      for(j=i+1; j < ast.length; j++){
+        //console.log("2");
+        if(ast[j].type=="openBrace"){
+          nbOpen++;
+          console.log("Open");
+        }
+        if(ast[j].type=="closeBrace"){
+          nbClose++;
+          console.log("Close");
+        }
+      }    
+      if(nbOpen!= nbClose && nbOpen > nbClose){
         console.log("ya trop de openBrace");
         return 0;
       }
@@ -121,37 +144,4 @@ exports.allOpenAndCloseIsOk = (ast) => {
   }
 
   return 1;
-
-
-  //test si un croche est bien fermé
-  for(i=0; i < ast.length; i++){
-    //console.log(i, ast[i], "1");
-    if(ast[i].type=="closeBrace"){
-      let nbOpen=0;
-      let nbClose=1;
-      console.log("iccciiiii");
-      for(j=0; j < i; j++){
-        //console.log("2");
-        if(ast[j].type=="openBrace"){
-          nbOpen++;
-          console.log("Open");
-        }
-        if(ast[j].type=="closeBrace"){
-          nbClose++;
-          console.log("Close");
-        }
-      }    
-      if(nbOpen!= nbClose && nbOpen > nbClose /* ajouter un test pour savoir si il ya une autre ouverture a la suite*/ ){
-        console.log("ya trop de openBrace");
-        return 0;
-      }
-      if(nbOpen!= nbClose && nbOpen < nbClose ){
-        console.log("ya trop de closeBrace");
-        return 0;
-      }
-    }
-  }
-
-  //test
-
 }
