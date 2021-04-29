@@ -115,7 +115,7 @@ function conditionIf(tokens, start){
     if(tokens[start+nombre+1].type != constTokens.typeCloseParenthese) throw constParser.errorMissingCloseParenthesis;
     if(tokens[start+nombre+2].type != constTokens.typeOpenBrace) throw constParser.errorMissingOpenBrace;
     let conditionName= expression;
-    nombre= start+nombre;
+    nombre= start+nombre +2;
     return {type: constParser.conditionIf, conditionName: conditionName, ifBody: [], nombre_iteration:nombre };
 }
 

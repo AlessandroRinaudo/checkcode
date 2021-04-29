@@ -57,7 +57,7 @@ module.exports=(tokens) =>{
         }
         else if (tokens[i].type == constTokens.typeCloseBrace) {
             if (inIf == true){
-                typeIf.push(tokens[i])
+                typeIf.push(tokens[i].type)
                 inIf = false;
                 i++
                 if (inFunction == true)
@@ -67,7 +67,7 @@ module.exports=(tokens) =>{
                 typeIf = []
             }
             else if (inFunction == true) {
-                typeFunction.push(tokens[i])
+                typeFunction.push(tokens[i].type)
                 inFunction = false;
                 i++
                 AST[AST.length - 1].functionBody = typeFunction
@@ -84,16 +84,27 @@ module.exports=(tokens) =>{
             }
             else if (inFunction == true) {
                 typeFunction.push(expression)
+                /* object = ""
+                for (const [key, value] of Object.entries(expression)) {
+                    object = object + " " +(key + ":" + value);
+                }
+                typeFunction.push(object)*/
             }
             else{
                 AST.push(expression);
             }
         }else{
             if (inIf == true) {
-                typeIf.push(tokens[i])
+                if (tokens[i].value)
+                    typeIf.push(tokens[i].value)
+                else
+                    typeIf.push(tokens[i].type)
             }
             else if (inFunction == true) {
-                typeFunction.push(tokens[i])
+                if (tokens[i].value)
+                    typeFunction.push(tokens[i].value)
+                else
+                    typeFunction.push(tokens[i].type)
             }
             else{
                 AST.push(tokens[i]);
