@@ -103,9 +103,9 @@ function conditionIf(tokens, start){
     let nombre = 0; //recupere le nombre totalque i a parcourue
     for( i=2; (tokens[start+i].type!= constTokens.typeCloseParenthese && i<=10 /*&& tokens[start+i].type!= constTokens. ajouter la contidition pour l'accolade */); i++ ){
         if ( tokens[start+i].value)
-            expression = expression + (tokens[start+i].value) + " ";//l'espace sert a separer avec les autres valeurs
+            expression = expression + (tokens[start+i].value);//l'espace sert a separer avec les autres valeurs
         else
-            expression = expression + (tokens[start + i].type) + " ";//l'espace sert a separer avec les autres valeurs
+            expression = expression + (tokens[start + i].type);//l'espace sert a separer avec les autres valeurs
         nombre=i;
     }
     //let token = tokenizer(expression);

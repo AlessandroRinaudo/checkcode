@@ -20,6 +20,25 @@ exports.allVariableAre = (ast) => {
     }
   }
 
+// test si une variable a ete cree avant sa declaration et si la varible declarer a deja ete declarer avant
+  for(i=0; i < ast.length; i++){
+    //console.log(i, ast[i], "1");
+    for (j=0; j < i; j++){
+      //console.log(j, ast[j], "2");
+      if(ast[j].type=="variableDeclaration" && ast[j].variableName == ast[i].variableName && ast[i].type=="variableDeclaration" ){
+        console.log("variable deja declare");
+        return 0;
+      }
+      if(ast[j].type=="variableAffectation" && ast[j].variableName==ast[i].variableName && ast[i].type=="variableDeclaration" ){
+        console.log("affectation de variable sans l avoir declarer ");
+        return 0;
+      }
+    }
+  }
+
+
+
+
   for(i=0;i<variablesDeclarations.length;i++) {
     for(j=0;j<variablesAffectations.length;j++) {
       if(variablesAffectations[j]=== variablesDeclarations[i]) 
@@ -36,3 +55,35 @@ exports.allVariableAre = (ast) => {
   return 1
 }
 
+exports.allVariablesAreUsed = (ast) => {
+
+//  test pour savoir si la variable declarer est utiliser une seconde fois
+  
+  for(i=0; i<ast.length; i++){
+    if(ast[i].type == "variableDeclaration"){
+      let utiliser = false;
+      console.log(ast[i]);
+      console.log(utiliser);
+     for(j=i+2; j<ast.length; j++){
+       
+      if(ast[j].type=="variableAffectation" && ast[j].variableName==ast[i].variableName /*|| ast[j].type == "word" && ast[j].variableName == ast[i].variableName*/){
+        console.log("var");
+        console.log(ast[j].variableName);
+        console.log(ast[i].variableName);
+        utiliser = true;
+      }
+      if(ast[j].type=="conditionIf" && ast[j].conditionName==ast[i].variableName){
+        console.log("if");
+        utiliser=true;
+      }
+    }
+    console.log(utiliser);
+    if(utiliser==false){
+      console.log("la variable n'est pas utilise ");
+      return 0;
+    }
+   }
+  }
+
+  return 1
+}

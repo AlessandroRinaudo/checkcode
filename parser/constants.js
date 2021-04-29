@@ -20,3 +20,5 @@ exports.errorMissingOpenBrace = "Error : missing a open brace";
 exports.errorMissingCloseBrace = "Error: missing a close brace";
 exports.errorMissingQuotationMark= "Error: missing quotation mark";
 exports.errorMissingWord= "Error: missing a word for valid expression";
+exports.errorDeclarationBefore= "Error: Declaration variable before the same declaration";
+exports.errorAffectationBefore= "Error: Affectation variable before declaration";

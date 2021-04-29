@@ -15,11 +15,13 @@ exports.from = (code) => {
         console.log("--------", "Result", "--------");
         let result = {
             syntaxCodeOk:helper.syntaxCodeOk(ast),
-            allVariableAre:helper.allVariableAre(ast)
+            allVariableAre:helper.allVariableAre(ast),
+            allVariablesAreUsed:helper.allVariablesAreUsed(ast) 
         };
         return {
             score: result.syntaxCodeOk+
-            result.allVariableAre,
+            result.allVariableAre+
+            result.allVariablesAreUsed,
             details: result
         }
     } catch (e) {

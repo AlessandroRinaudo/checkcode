@@ -4,3 +4,6 @@ function a () {
   }
   return 1
 }
+
+let b =4
+if(b){}
