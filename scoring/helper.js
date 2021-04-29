@@ -155,3 +155,7 @@ exports.allOpenAndCloseIsOk = (ast) => {
   //test
 
 }
+
+exports.linesNumberOk = (ast) => {
+  return 1
+}

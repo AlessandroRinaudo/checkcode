@@ -17,13 +17,15 @@ exports.from = (code) => {
             syntaxCodeOk:helper.syntaxCodeOk(ast),
             allVariableAre:helper.allVariableAre(ast),
             allVariablesAreUsed:helper.allVariablesAreUsed(ast),
-            allOpenAndCloseIsOk:helper.allOpenAndCloseIsOk(ast) 
+            allOpenAndCloseIsOk:helper.allOpenAndCloseIsOk(ast) ,
+            linesNumberOk:helper.linesNumberOk(ast) 
         };
         return {
             score: result.syntaxCodeOk+
             result.allVariableAre+
             result.allVariablesAreUsed+
-            result.allOpenAndCloseIsOk,
+            result.allOpenAndCloseIsOk+
+            result.linesNumberOk,
             details: result
         }
     } catch (e) {
