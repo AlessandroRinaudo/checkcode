@@ -97,7 +97,6 @@ exports.allOpenAndCloseIsOk = (ast) => {
     if(ast[i].type=="closeBrace"){ //test si tous les tous les accolade avant sont bon
       let nbOpen=0;
       let nbClose=1;
-      console.log("iccciiiii");
       for(j=0; j < i; j++){
         //console.log("2");
         if(ast[j].type=="openBrace"){
@@ -141,10 +140,102 @@ exports.allOpenAndCloseIsOk = (ast) => {
         return 0;
       }
     }
+    //console.log(i, ast[i], "1");
+    if (ast[i].type == "closeSquareBracket") { //test si tous les tous les crochets avant sont bon
+      nbOpen = 0;
+      nbClose = 1;
+      for (j = 0; j < i; j++) {
+        //console.log("2");
+        if (ast[j].type == "openSquareBracket") {
+          nbOpen++;
+          console.log("Open");
+        }
+        if (ast[j].type == "closeSquareBracket") {
+          nbClose++;
+          console.log("Close");
+        }
+      }
+      if (nbOpen != nbClose && nbOpen > nbClose) {
+        console.log("ya trop de openSquareBracket");
+        return 0;
+      }
+      if (nbOpen != nbClose && nbOpen < nbClose) {
+        console.log("ya trop de closeSquareBracket");
+        return 0;
+      }
+    }
+    if (ast[i].type == "openSquareBracket") { //test si il a le closeSquareBracket pour ce openSquareBracket
+      let nbOpen = 1;
+      let nbClose = 0;
+      for (j = i + 1; j < ast.length; j++) {
+        //console.log("2");
+        if (ast[j].type == "openSquareBracket") {
+          nbOpen++;
+          console.log("Open");
+        }
+        if (ast[j].type == "closeSquareBracket") {
+          nbClose++;
+          console.log("Close");
+        }
+      }
+      if (nbOpen != nbClose && nbOpen > nbClose) {
+        console.log("ya trop de openSquareBracket");
+        return 0;
+      }
+      if (nbOpen != nbClose && nbOpen < nbClose) {
+        console.log("ya trop de closeSquareBracket");
+        return 0;
+      }
+    }
+    //console.log(i, ast[i], "1");
+    if (ast[i].type == "closeParenthese") { //test si tous les tous les parenthese avant sont bon
+      nbOpen = 0;
+      nbClose = 1;
+      for (j = 0; j < i; j++) {
+        //console.log("2");
+        if (ast[j].type == "openParenthese") {
+          nbOpen++;
+          console.log("Open");
+        }
+        if (ast[j].type == "closeParenthese") {
+          nbClose++;
+          console.log("Close");
+        }
+      }
+      if (nbOpen != nbClose && nbOpen > nbClose) {
+        console.log("ya trop de openParenthese");
+        return 0;
+      }
+      if (nbOpen != nbClose && nbOpen < nbClose) {
+        console.log("ya trop de closeParenthese");
+        return 0;
+      }
+    }
+    if (ast[i].type == "openParenthese") { //test si il a le closeParenthese pour ce openParenthese
+      nbOpen = 1;
+      nbClose = 0;
+      for (j = i + 1; j < ast.length; j++) {
+        //console.log("2");
+        if (ast[j].type == "openParenthese") {
+          nbOpen++;
+          console.log("Open");
+        }
+        if (ast[j].type == "closeParenthese") {
+          nbClose++;
+          console.log("Close");
+        }
+      }
+      if (nbOpen != nbClose && nbOpen > nbClose) {
+        console.log("ya trop de openParenthese");
+        return 0;
+      }
+      if (nbOpen != nbClose && nbOpen < nbClose) {
+        console.log("ya trop de closeParenthese");
+        return 0;
+      }
+    }
   }
-
-  //test
-
+  return 1
 }
 
 exports.linesNumberOk = (ast) => {
