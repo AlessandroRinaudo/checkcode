@@ -55,6 +55,22 @@ module.exports=(tokens) =>{
             expression = factory.create(constParser.expressionBlockComment, tokens, i);
             i = expression.end;
         }
+        else if (tokens[i].type == constTokens.typeAddition) {
+            expression = factory.create(constParser.expressionAddition, tokens, i);
+            i = expression.end;
+        }
+        else if (tokens[i].type == constTokens.typeMultiplication) {
+            expression = factory.create(constParser.expressionMultiplication, tokens, i);
+            i = expression.end;
+        }
+        else if (tokens[i].type == constTokens.typeDivision) {
+            expression = factory.create(constParser.expressionDivision, tokens, i);
+            i = expression.end;
+        }
+        else if (tokens[i].type == constTokens.typeSoustraction) {
+            expression = factory.create(constParser.expressionSoustraction, tokens, i);
+            i = expression.end;
+        }
         else if (tokens[i].type == constTokens.typeCloseBrace) {
             if (inIf == true){
                 typeIf.push(tokens[i].type)
