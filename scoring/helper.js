@@ -62,22 +62,22 @@ exports.allVariablesAreUsed = (ast) => {
   for(i=0; i<ast.length; i++){
     if(ast[i].type == "variableDeclaration"){
       let utiliser = false;
-      console.log(ast[i]);
-      console.log(utiliser);
+      // console.log(ast[i]);
+      // console.log(utiliser);
      for(j=i+2; j<ast.length; j++){
        
       if(ast[j].type=="variableAffectation" && ast[j].variableName==ast[i].variableName /*|| ast[j].type == "word" && ast[j].variableName == ast[i].variableName*/){
-        console.log("var");
-        console.log(ast[j].variableName);
-        console.log(ast[i].variableName);
+        // console.log("var");
+        // console.log(ast[j].variableName);
+        // console.log(ast[i].variableName);
         utiliser = true;
       }
       if(ast[j].type=="conditionIf" && ast[j].conditionName==ast[i].variableName){
-        console.log("if");
+       // console.log("if");
         utiliser=true;
       }
     }
-    console.log(utiliser);
+    // console.log(utiliser);
     if(utiliser==false){
       console.log("la variable n'est pas utilise ");
       return 0;
@@ -86,4 +86,72 @@ exports.allVariablesAreUsed = (ast) => {
   }
 
   return 1
+}
+
+
+exports.allOpenAndCloseIsOk = (ast) => {
+
+  // test si une accolade est bien fermé
+  for(i=0; i < ast.length; i++){
+    //console.log(i, ast[i], "1");
+    if(ast[i].type=="closeBrace"){
+      let nbOpen=0;
+      let nbClose=1;
+      console.log("iccciiiii");
+      for(j=0; j < i; j++){
+        //console.log("2");
+        if(ast[j].type=="openBrace"){
+          nbOpen++;
+          console.log("Open");
+        }
+        if(ast[j].type=="closeBrace"){
+          nbClose++;
+          console.log("Close");
+        }
+      }    
+      if(nbOpen!= nbClose && nbOpen > nbClose /* ajouter un test pour savoir si il ya une autre ouverture a la suite*/ ){
+        console.log("ya trop de openBrace");
+        return 0;
+      }
+      if(nbOpen!= nbClose && nbOpen < nbClose ){
+        console.log("ya trop de closeBrace");
+        return 0;
+      }
+    }
+  }
+
+  return 1;
+
+
+  //test si un croche est bien fermé
+  for(i=0; i < ast.length; i++){
+    //console.log(i, ast[i], "1");
+    if(ast[i].type=="closeBrace"){
+      let nbOpen=0;
+      let nbClose=1;
+      console.log("iccciiiii");
+      for(j=0; j < i; j++){
+        //console.log("2");
+        if(ast[j].type=="openBrace"){
+          nbOpen++;
+          console.log("Open");
+        }
+        if(ast[j].type=="closeBrace"){
+          nbClose++;
+          console.log("Close");
+        }
+      }    
+      if(nbOpen!= nbClose && nbOpen > nbClose /* ajouter un test pour savoir si il ya une autre ouverture a la suite*/ ){
+        console.log("ya trop de openBrace");
+        return 0;
+      }
+      if(nbOpen!= nbClose && nbOpen < nbClose ){
+        console.log("ya trop de closeBrace");
+        return 0;
+      }
+    }
+  }
+
+  //test
+
 }
