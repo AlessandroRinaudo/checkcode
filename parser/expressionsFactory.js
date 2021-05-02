@@ -102,13 +102,10 @@ function functionAffectation(tokens, start) {
         }
         functionValue.push(tokens[i]);
     }
-    //console.log(functionParam)
-    //console.log(functionValue)
     return { type: constParser.functionAffectation, functionParam: functionParam, functionName: functionName, functionValue: functionValue, end: end };
 }
 
 function conditionIf(tokens, start){
-    //if(tokens[start-1].type != constTokens.typeWord) throw constParser.errorMissingWord;
     if(tokens[start+1].type != constTokens.typeOpenParenthese ) throw constParser.errorMissingOpenParenthesis;//test si il manque une parenthese apres le if
     let expression=[]; //recupere toute les condition dans if
     let nombre = 0; //recupere le nombre totalque i a parcourue
@@ -119,10 +116,6 @@ function conditionIf(tokens, start){
             expression = expression + (tokens[start + i].type);//l'espace sert a separer avec les autres valeurs
         nombre=i;
     }
-    //let token = tokenizer(expression);
-    //console.log(token);
-    //let ast = parser(token);
-    //console.log(ast);
     if(tokens[start+nombre+1].type != constTokens.typeCloseParenthese) throw constParser.errorMissingCloseParenthesis;
     if(tokens[start+nombre+2].type != constTokens.typeOpenBrace) throw constParser.errorMissingOpenBrace;
     let conditionName= expression;

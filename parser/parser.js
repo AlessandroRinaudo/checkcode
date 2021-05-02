@@ -100,11 +100,6 @@ module.exports=(tokens) =>{
             }
             else if (inFunction == true) {
                 typeFunction.push(expression)
-                /* object = ""
-                for (const [key, value] of Object.entries(expression)) {
-                    object = object + " " +(key + ":" + value);
-                }
-                typeFunction.push(object)*/
             }
             else{
                 AST.push(expression);

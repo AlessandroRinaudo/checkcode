@@ -1,6 +1,8 @@
 exports.syntaxCodeOk = (ast) => {
+  //si la syntaxe ne renvoie pas d'exceptions alors elle est valide et vaut 1
   return 1
 }
+
 exports.allVariableAre = (ast) => {
   let variablesAffectations = []
   let variablesDeclarations = []
@@ -35,8 +37,6 @@ exports.allVariableAre = (ast) => {
       }
     }
   }
-
-
 
 
   for(i=0;i<variablesDeclarations.length;i++) {

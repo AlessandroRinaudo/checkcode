@@ -23,16 +23,16 @@ APPLICATION :
     décalarations                           [x]
     utilisation des variables               [x]
     fermeture accolades                     [x]
-    le nb des lignes                        []
+    le nb des lignes                        [x]
 
 DIAPOS :
-  Contextes                                 []
-  Analyse fonctionel                        []
-  Analyse conceptuel                        []
-  Méthodologie                              []
-  Difficultés                               []
-  Conclusion                                []
+  Contextes                                 [x]
+  Analyse fonctionel                        [x]
+  Analyse conceptuel                        [x]
+  Méthodologie                              [x]
+  Difficultés                               [x]
+  Conclusion                                [x]
 
 PRÉPARATION SOUTENANCE :
-  Répeter 3 fois 15 minutes : 16h30         []
+  Répeter 3 fois 15 minutes : 16h30         [x]
   

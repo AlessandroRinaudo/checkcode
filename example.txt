@@ -1,33 +1,43 @@
-function a () {
-  if(b) {
-    let c = 3
-  }
-  return 1
-}
+Example fonctionnant
 
-let b =4
-if(b){}
-
-// azer azert azert if aer
-/*
-comment
-in
-block
- */
-function x (a, b, c) {
-    let x = 2
-    return x
+/* Présentation de l'application */
+const a = "Ceci est un test"
+if(a==2) {
+    a=3
 }
-if (a==2){
-    let x = 2
-    return x
+function x  () {
+    return 1
 }
-let d;
+a="Salut"
+console.log(a);
 
-let b = 3
-b=2 
-let c =4
-b=4
-d="string";
-let f;
-f='c';
+Example avec une variable qui n'a pas été utilisé 
+
+/* Présentation de l'application */
+const a = "Ceci est un test"
+if(a==2) {
+}
+function x  () {
+    return 1
+}
+console.log(a);
+
+
+Example avec une variable non déclarée 
+
+/* Présentation de l'application */
+
+if(a==2) {
+    a=3
+}
+function x  () {
+    return 1
+}
+a="Salut"
+console.log(a);
+
+Example avec une syntax non valide 
+
+let 2 = 2
+
+
